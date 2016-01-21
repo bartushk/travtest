@@ -1,0 +1,22 @@
+{
+  "name": "travtest",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm install && gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bartushk/travtest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bartushk/travtest/issues"
+  },
+  "homepage": "https://github.com/bartushk/travtest",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  }
+}
