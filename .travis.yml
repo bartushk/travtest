@@ -8,7 +8,9 @@ addons:
     packages:
     - sshpass
 after_success:
-- echo $TEST
+- cat travtest_rsa.pub
 env:
   global:
-  - secure: lpGQF8Qn1CpOHqK9SFZnYmfwEROkgq84g6RzuCKOIq99/xC14RLEt7c6COPgh2cR86N2P+TqsXqSE+giI+C+fPxjvpP8vlefDtcjVunMc2u8dBSnvxkt3bmH3qVWi1kljwKLmvNQdrJbBwiRMjNpkAtejdJ1nWiuFLWegeBK7eERlnaKtJyLWXikNURSXEuKA9LEeMy0rrCRCLXpmIicR96y0om/2xsVprDGbGxuvApvAvJ/Qpu2oVxjKOgAMpm6SXbrE7w2pYOWqZxs9H6YqEvS9LBNErLwzZ8niEB6Kik5OTOkZfr2ncFX/AwyOxGEa59XDqFFky5RRSa1wqDzHZbsDVPy2gktDsnITUE6J3HCJ1HG3fcuuj+WsXXOZiaN9pXrNijxd2uQS2Hwk6X+y+sqzSYBOXVT2gj1o/vsYHtNOh3Bj+Y+GPiiMCHNK+DdDV+NjSSEO8DaMfsUq5jVECoJn50R+WpNILER6W25NPiIQDJmYz+PAuFxios/7FAGezAvxOzbnP0RQa1Th0sv+dBTbXNfd0Wq8wgVbX5vRvgfaYoCubn+t791GCSf1bPnof/cU05Yh34YGaF2xKEQOGlE2NSzk92SDXw0Hd5PxbqKCqItxqgyzJNHFSO/1P9xvHEdPYiwbeRTV8q89qLrRVRuYVH8r0rHKDKRmVIw0VY=
+before_install:
+- openssl aes-256-cbc -K $encrypted_c9cd749dbd63_key -iv $encrypted_c9cd749dbd63_iv
+  -in travtest_rsa.pub.enc -out ./travtest_rsa.pub -d
