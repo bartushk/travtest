@@ -1,13 +1,14 @@
 language: node_js
 sudo: false
 node_js:
-  - 4.2.4
+- 4.2.4
 script: npm test
 addons:
   apt:
     packages:
-      - sshpass
+    - sshpass
 after_success:
-  - export SSHPASS=$DEPLOY_DEV_PASS
-  - sshpass -e ssh $DEPLOY_DEV_USER@$DEPLOY_DEV_HOST "git -C ${DEPLOY_DEV_PATH} pull"
-  - sshpass -e ssh $DEPLOY_DEV_USER@$DEPLOY_DEV_HOST $DEPLOY_DEV_PATH/deploy-dev.sh
+  - echo $TEST 
+env:
+  global:
+    secure: kdQ0aGkJ7+6QMuCcfQkiUVz1qTxhX4YaDOPAkj6MIUqC50Vklb0mvOujeYMBLWUUxIJsb7AMwcQCDXrfEAPSTmidet3zdsp/imbwEHkRSAa8B8tthKiHXtZPZzHyxaLm9O4iUq95nsnA3ORPNN7BtR4Ch2JFTyF50qkIgZ+fUV174PT6iT0AtK7Y5YIArLJyFjRRV5ZDW3/5LVG+u6Ibj+SvxkIrySlJk+9iJdA8n5lMyecYmtsid+K2kV8ZLzZWpDuyuLzjFT+D5o65+FJuE1byVp166O294zJUzf/OreYonuIrDI5ToavhtdM9+0PMsOfKA4NFKGQA1hJx/KQY/O+xJJs32m3DDmHak5KlLB2chIXbWRBW1Up1kRViFsKvRXpINNzi2E4Kgd2BULJuoyRNFScnCiYMxUguKjGTntL1FTlaC7MyU05Oksg8YhbG+doGB2zT9HN20xsKCx6CHM64PNKjEwP3M0KStmw1kqN56jA74nV2WsBsPyMHcSyDw9+A69yflACVC9xKAsqs1ZP6leHMBF/RUVJBHQCf7f9gBDlYrOnQ7YKDaWav+seCBCACxr4oOVd0YuAkrig9GXjLMymIm2ij6/GFJ/m0NJowIhEjVt4G0l6r61/H78NlaK2In8fCh62w6EA4zPw3B63a8DsFMiomzpuhHVixiq8=
