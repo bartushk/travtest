@@ -5,7 +5,7 @@ node_js:
 script: npm test
 after_success:
 - cat travtest_rsa.pub
-- ssh -i travtest_rsa travtest@travtest.memmi.net "touch test"
+- ssh -i travtest_rsa -o StrictHostKeyChecking=no travtest@travtest.memmi.net "touch test"
 env:
   global: 
 before_install:
