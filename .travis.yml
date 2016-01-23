@@ -2,6 +2,7 @@ language: node_js
 sudo: false
 script: npm test
 after_success:
+- chmod 600 travtest_rsa
 - cat travtest_rsa.pub
 - ssh -i travtest_rsa -o StrictHostKeyChecking=no travtest@travtest.memmi.net "touch test"
 env:
