@@ -2,7 +2,7 @@ dependencies:
   pre:
     - sudo apt-get update
     - apt-cache search icd
-    - sudo apt-get install -y cmake ocl-icd-opencl-dev xz-utils
+    - sudo apt-get install -y cmake nvidia-libopencl1-340 nvidia-opencl-icd-331-updates xz-utils
   override:     
     - wget https://cmocka.org/files/1.0/cmocka-1.0.1.tar.xz
     - tar xf cmocka-1.0.1.tar.xz
