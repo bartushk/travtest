@@ -77,6 +77,7 @@ find_path(OpenCL_INCLUDE_DIR
     ENV NVSDKCOMPUTE_ROOT
     ENV CUDA_PATH
     ENV ATISTREAMSDKROOT
+    ENV OpenCL_IncPath
     /include
   PATH_SUFFIXES
     include
@@ -123,7 +124,7 @@ else()
     PATHS
     	/lib
         ENV LD_LIBRARY_PATH
-        ENV OpenCL_LIBPATH
+        ENV OpenCL_LibPath
         )
 endif()
 

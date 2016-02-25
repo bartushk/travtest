@@ -5,13 +5,14 @@ env:
     - CLSPARSE_ROOT=${TRAVIS_BUILD_DIR}/bin/make/release
     - OPENCL_REGISTRY=https://www.khronos.org/registry/cl
     - OPENCL_ROOT=${TRAVIS_BUILD_DIR}/bin/opencl
-    - OpenCL_LIBPATH=${OPENCL_ROOT}/lib
+    - OpenCL_LibPath=${OPENCL_ROOT}/lib
+    - OpenCL_IncPath=${OPENCL_ROOT}/include
 git:
   submodules: false
-before_install:
-    - sudo apt-get update
-    - sudo apt-get install -y cmake
-    - sudo apt-get install -y opencl-headers 
+addons:
+  apt:
+    packages:
+      - cmake
 install:
   # The following linux logic is necessary because of Travis's move to the GCE platform, which does not
   # currently contain packages for fglrx: https://github.com/travis-ci/travis-ci/issues/5221
