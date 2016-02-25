@@ -1,12 +1,5 @@
 language: c
 sudo: true
-env:
-  global:
-    - CLSPARSE_ROOT=${TRAVIS_BUILD_DIR}/bin/make/release
-    - OPENCL_REGISTRY=https://www.khronos.org/registry/cl
-    - OPENCL_ROOT=${TRAVIS_BUILD_DIR}/bin/opencl
-    - OpenCL_LibPath=${OPENCL_ROOT}/lib
-    - OpenCL_IncPath=${OPENCL_ROOT}/include
 git:
   submodules: false
 addons:
@@ -14,32 +7,10 @@ addons:
     packages:
       - cmake
 install:
-  # The following linux logic is necessary because of Travis's move to the GCE platform, which does not
-  # currently contain packages for fglrx: https://github.com/travis-ci/travis-ci/issues/5221
-  # We build our own linkable .so file
   - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
-      mkdir -p ${OPENCL_ROOT};
-      pushd ${OPENCL_ROOT};
-      wget --no-check-certificate ${OPENCL_REGISTRY}/specs/opencl-icd-1.2.11.0.tgz;
-      tar -xf opencl-icd-1.2.11.0.tgz;
-      mv ./icd/* .;
-      mkdir -p inc/CL;
-      pushd inc/CL;
-      wget --no-check-certificate -r -w 1 -np -nd -nv -A h,hpp https://www.khronos.org/registry/cl/api/1.2/;
-      wget --no-check-certificate -w 1 -np -nd -nv -A h,hpp https://www.khronos.org/registry/cl/api/2.1/cl.hpp;
-      popd;
-      mkdir -p lib;
-      pushd lib;
-      cmake -G "Unix Makefiles" ..;
-      make;
-      cp ../bin/libOpenCL.so .;
-      popd;
-      mv inc/ include/;
-      popd;
+        sudo apt-get update;
+        sudo apt-get install -y ocl-icd-opencl-dev
     fi
-  - ls ${OPENCL_ROOT}
-  - ls ${OpenCL_LibPath}
-  - ls ${OpenCL_IncPath}
   - wget https://cmocka.org/files/1.0/cmocka-1.0.1.tar.xz
   - tar xf cmocka-1.0.1.tar.xz
   - cd cmocka-1.0.1 && mkdir build && cd build && cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release .. && make && sudo make install
