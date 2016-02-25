@@ -5,6 +5,7 @@ env:
     - CLSPARSE_ROOT=${TRAVIS_BUILD_DIR}/bin/make/release
     - OPENCL_REGISTRY=https://www.khronos.org/registry/cl
     - OPENCL_ROOT=${TRAVIS_BUILD_DIR}/bin/opencl
+    - OpenCL_LIBPATH=${OPENCL_ROOT}/lib
 git:
   submodules: false
 before_install:
